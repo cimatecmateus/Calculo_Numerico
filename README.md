@@ -1,2 +1,2 @@
-# C-lculo-Num-rico
-Códigos na linguagem C de métodos numéricos 
+# Cálculo Numérico
+Códigos utilizados na disciplina Cálculo Numérico ministrada na Faculdade de Tecnologia Senai Cimatec.
