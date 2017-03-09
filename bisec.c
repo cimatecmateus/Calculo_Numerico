@@ -4,7 +4,7 @@
 
 #define JMAX 4000000 //Número máximo de iterações
 
-/* Método que define qual função será analisada */
+/* Método que retorna o valor da função analisada para um dado ponto */
 float funcao(float x){
   float func = pow(x,2) + log(x);
   return func;
@@ -46,8 +46,8 @@ float rtbis(float x1, float x2, float erroAbs, const char *str){
     
     rtb = f < 0.0 ? (dx=x2-x1,x1) : (dx=x1-x2,x2);    //Desvio condicional que define o ponto de referência para o inicio das iteracoes  
     for (j = 1; j <= JMAX; j++){    //Inicio das iteracoes
-      xMedio = rtb + (dx *= 0.5);                         
-      fMedia = funcao(xMedio);             
+      xMedio = rtb + (dx *= 0.5);   //Ponto medio                         
+      fMedia = funcao(xMedio);      //Imagem do ponto medio             
       printf("Para iteracao %d temos x=%f e fx=%f \n", j, xMedio, fMedia);
       if (fMedia <= 0.0)    //Se a imagem do ponto medio for negativa, o ponto de referencia assume seu valor
         rtb = xMedio;
