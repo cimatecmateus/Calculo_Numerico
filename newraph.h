@@ -16,13 +16,15 @@ float metodoNewRaph(float x1, float tolerancia, char opTolerancia) {
 
   xAtual = x1; //Valor inicial de chute
 
+  printf("\n");
+
   for (j=1;j<=JMAX;j++) {                     //Início das iterações
     imagemAtual = f(xAtual);
     dx = (imagemAtual/fLinha(xAtual));
     xProximo = xAtual - dx;                   //Calcula o próxima suposta raiz
     delta = (xProximo - xAtual) / xProximo;   //Calculo da tolerancia
 
-    printf("Para iteracao %d temos x = %f e f(x) = %f tolerancia = %f \n", j, xAtual, imagemAtual, fabs(delta));
+    printf("Para iteração %d temos x = %f | f(x) = %f | Tolerância = %f \n", j, xAtual, imagemAtual, fabs(delta));
 
     if (fabs(dx)>10000){                      //Se a divisao f(x)/f'(x), raiz não converge
       printf("\nNão converge.\n");

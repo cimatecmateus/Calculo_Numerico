@@ -3,33 +3,35 @@
 
 #include "funcoes.h"
 
-#define MAXIT 30 /*numero m�ximo de itera��es */
+#define MAXIT 1000 //Número máximo de iterações
      
 float metodoCordas(float a, float b, float tolerancia){
 
   int j;
-  float fa, fb, xFixo, xProximo, xAtual, imagemFixa, imagemAtual;
+  float xFixo, xProximo, xAtual, imagemFixa, imagemAtual;
 
-    if(fa > 0){
+    if(f(a) > 0){   //Se imagem do a ponto positiva
       xFixo = a;
       xAtual = b;
-      imagemFixa = fa;
+      imagemFixa = f(a);
     }
-    else{
+    else{         //Se imagem do ponto b positiva
       xFixo = b;
       xAtual = a;
-      imagemFixa = fb;
+      imagemFixa = f(b);
     }
 
+    printf("\n");
+
     for(j = 1; j < MAXIT; j++){
-      xProximo = xAtual - (f(xAtual)/(f(xAtual) - imagemFixa))*(xAtual - xFixo);
+      xProximo = xAtual - (f(xAtual)/(f(xAtual) - imagemFixa))*(xAtual - xFixo);    //Calcula próximo valor da iteração
       xAtual = xProximo;
       imagemAtual = f(xAtual);
-      printf("Para iteração %d x = %f e f(x) = %f\n", j, xAtual, imagemAtual);
-      if(fabs(imagemAtual) < tolerancia || imagemAtual == 0.0)
+      printf("Para iteração %d x = %f | f(x) = %f\n", j, xAtual, imagemAtual);
+      if(fabs(imagemAtual) < tolerancia || imagemAtual == 0.0)      //Se critério de parada satisfeito, retorne o valor da raiz
         return xAtual;
     }
-    
+    printf("\nLimite de iterações excedida!\n");
     return 0.0;
  
 }
