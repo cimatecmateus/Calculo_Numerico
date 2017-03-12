@@ -6,7 +6,7 @@
 
 /* Método que retorna o valor da função analisada para um dado ponto */
 float funcao(float x){
-  float func = pow(x,2) + log(x);
+  float func = pow(x,3) - 10;   //Eleva x ao cubo
   return func;
 }
 
@@ -48,11 +48,11 @@ float rtbis(float x1, float x2, float erroAbs, const char *str){
     for (j = 1; j <= JMAX; j++){    //Inicio das iteracoes
       xMedio = rtb + (dx *= 0.5);   //Ponto medio                         
       fMedia = funcao(xMedio);      //Imagem do ponto medio             
-      printf("Para iteracao %d temos x=%f e fx=%f \n", j, xMedio, fMedia);
+      printf("Para iteracao %d temos x=%f e fx=%f dx=%f\n", j, xMedio, fMedia, dx);
       if (fMedia <= 0.0)    //Se a imagem do ponto medio for negativa, o ponto de referencia assume seu valor
         rtb = xMedio;
       if (fabs(dx) < erroAbs || fMedia == 0.0)    //Se o erro absoluto for menor ou igual ao desejado ou a imagem do ponto medio igual a zero, raiz encontrada! 
-        return rtb; 
+        return xMedio; 
     }
     printf("\nNumero maximo de iteracoes atingido e raiz nao encontrada\n");
     return 0.0;
@@ -60,6 +60,8 @@ float rtbis(float x1, float x2, float erroAbs, const char *str){
 }
 
 main(){
+  system("clear");
+
   float x1, x2, erroAbs,x;
   char expFuncao[50] =  "x² + ln(x)";
   char usuarioResp;

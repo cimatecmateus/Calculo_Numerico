@@ -7,13 +7,13 @@
 
 /* Método que retorna o valor da função analisada para um dado ponto */
 float funcao(float x){    
-      float func = exp(-x*x)-cos(x);
+      float func = pow(x,2) + x - 6;
       return func;
 }      
 
 /* Método que retorna o valor da derivada da função analisada para um dado ponto */
 float derivaf(float x){
-      float deriva = -2*x*exp(-x*x)+sin(x);
+      float deriva = 2*x + 1;
       return deriva;
 } 
 
@@ -36,16 +36,20 @@ absoluto epsilon (erroAbs) */
 float rtnewt(float x1, float tolerancia, char opTolerancia) {
 
   int j;
-  float df,dx,f,rtn;
+  float df, dx, f ,rtn;
+  float xAnt;
+  float delta;
 
   rtn = x1; //Valor inicial de chute
 
   for (j=1;j<=JMAX;j++) {
     f = funcao(rtn);  
     dx = funcao(rtn) / derivaf(rtn);
+    xAnt = rtn;
     rtn -= dx;
+    delta = (rtn - xAnt) / rtn;
 
-    printf("Para iteracao %d temos x = %f e f(x) = %f dx = %f \n", j, rtn, f, fabs(dx));
+    printf("Para iteracao %d temos x = %f e f(x) = %f dx = %f \n", j, rtn, f, fabs(delta));
 
     if (fabs(dx)>10000){ 
       printf("\nNão converge.\n");
@@ -57,7 +61,7 @@ float rtnewt(float x1, float tolerancia, char opTolerancia) {
         return rtn; /*convergencia. */
     }
     else{
-      if(fabs(dx) < tolerancia)
+      if(fabs(delta) < tolerancia)
         return rtn;
     }
 
@@ -70,6 +74,9 @@ float rtnewt(float x1, float tolerancia, char opTolerancia) {
 
 
 main(){
+
+  system("clear");
+
   float x1, xacc, x;
   char resposta;      
 
