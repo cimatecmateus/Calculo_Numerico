@@ -1,69 +1,45 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <math.h>
+#ifndef _NEWRAPH_H
+#define _NEWRAPH_H
 
+#include "funcoes.h"
 
 #define JMAX 4000000 /*definido o número máximo de iterações.*/
-
-/* Método que retorna o valor da função analisada para um dado ponto */
-float funcao(float x){    
-      float func = pow(x,2) + x - 6;
-      return func;
-}      
-
-/* Método que retorna o valor da derivada da função analisada para um dado ponto */
-float derivaf(float x){
-      float deriva = 2*x + 1;
-      return deriva;
-} 
-
-/* Método que limpa buffer do teclado no linux */
-void flush_in() { 
-  int ch;
-  while( (ch = fgetc(stdin)) != EOF && ch != '\n' ){} 
-}
-
-void aguardaUsuario(){
-  printf("\nPressione enter para continuar continuar...");
-  flush_in();
-  getchar();
-}      
-
+   
 /* Função que através do método de Newton-Raphson
 retorna a raíz da função desejada.
 Recebe como parâmetros um valor chute de raiz e o erro 
 absoluto epsilon (erroAbs) */
-float rtnewt(float x1, float tolerancia, char opTolerancia) {
+float metodoNewRaph(float x1, float tolerancia, char opTolerancia) {
 
   int j;
-  float df, dx, f ,rtn;
-  float xAnt;
-  float delta;
+  float dx, imagemAtual, xAtual, xProximo, delta;
 
-  rtn = x1; //Valor inicial de chute
+  xAtual = x1; //Valor inicial de chute
 
-  for (j=1;j<=JMAX;j++) {
-    f = funcao(rtn);  
-    dx = funcao(rtn) / derivaf(rtn);
-    xAnt = rtn;
-    rtn -= dx;
-    delta = (rtn - xAnt) / rtn;
+  for (j=1;j<=JMAX;j++) {                     //Início das iterações
+    imagemAtual = f(xAtual);
+    dx = (imagemAtual/fLinha(xAtual));
+    xProximo = xAtual - dx;                   //Calcula o próxima suposta raiz
+    delta = (xProximo - xAtual) / xProximo;   //Calculo da tolerancia
 
-    printf("Para iteracao %d temos x = %f e f(x) = %f dx = %f \n", j, rtn, f, fabs(delta));
+    printf("Para iteracao %d temos x = %f e f(x) = %f tolerancia = %f \n", j, xAtual, imagemAtual, fabs(delta));
 
-    if (fabs(dx)>10000){ 
+    if (fabs(dx)>10000){                      //Se a divisao f(x)/f'(x), raiz não converge
       printf("\nNão converge.\n");
       return 0.0;
     }
 
-    if(opTolerancia == 'e' || opTolerancia == 'E'){
-      if (fabs(f) < tolerancia) 
-        return rtn; /*convergencia. */
+    /* Define qual será condição de parada */
+    if(opTolerancia == 'e' || opTolerancia == 'E'){       //Se epsilon, usar a imagem do ponto atual       
+      if (fabs(imagemAtual) < tolerancia) 
+        return xAtual;                                    //Retorna valor da raiz para uma  dada tolerancia
     }
-    else{
+    else{                                                 //Senão, tolerancia = (Xk+1 - Xk)/Xk+1
       if(fabs(delta) < tolerancia)
-        return rtn;
+        return xAtual;
     }
+
+    xAtual = xProximo;        //Se condicao de parada não validada, o ponto calculado é inserido novamente na iteração
 
   }
 
@@ -72,33 +48,5 @@ float rtnewt(float x1, float tolerancia, char opTolerancia) {
 
 }
 
+#endif
 
-main(){
-
-  system("clear");
-
-  float x1, xacc, x;
-  char resposta;      
-
-  printf("Insira o valor inicial: ");
-  scanf("%f",&x1);
-  flush_in();
-  printf("\nCritério de convergência Epsilon ou Delta?\n");
-  printf("Resposta (E/D): ");
-  scanf("%c", &resposta);
-
-  if(resposta == 'e' || resposta == 'E' || resposta == 'd' || resposta == 'D'){
-    printf("\nEspecifique o critério de convergência: ");
-    scanf("%f",&xacc);
-  }
-  else{
-    printf("\nResposta invalida!\n");
-    aguardaUsuario();
-    return 0;
-  }
- 
-  x = rtnewt(x1,xacc, resposta);
-  printf("\nO valor de x e: %f\n",x);
-         
-
-}

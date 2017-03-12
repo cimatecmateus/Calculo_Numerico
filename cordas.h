@@ -1,24 +1,15 @@
-#include <stdlib.h>
-#include <stdio.h>
+#ifndef _CORDAS_H
+#define _CORDAS_H
+
 #include "funcoes.h"
 
 #define MAXIT 30 /*numero m�ximo de itera��es */
      
-
 float metodoCordas(float a, float b, float tolerancia){
 
-  int j;//n�mero de itera��es 
+  int j;
   float fa, fb, xFixo, xProximo, xAtual, imagemFixa, imagemAtual;
 
-  fa = f(a);  
-  fb = f(b);  
-
-  if (fa * fb >= 0.0){    //Condição que valida o intervalo passado pelo usuário
-    printf("\n----------------------------------------------->Erro!<-----------------------------------------------");
-    printf("\nA raíz da funcao não esta contida no intervalo [%f, %f]\n", a, b);
-    return 0.0;
-  }
-  else{
     if(fa > 0){
       xFixo = a;
       xAtual = b;
@@ -38,24 +29,9 @@ float metodoCordas(float a, float b, float tolerancia){
       if(fabs(imagemAtual) < tolerancia || imagemAtual == 0.0)
         return xAtual;
     }
+    
     return 0.0;
-  }
  
 }
 
-
-main(){
-float x1, x2, xacc,x;      
-
-        printf("Digite o limite inferior do intervalo: ");
-        scanf("%f",&x1);
-        printf("Digite o limite superior do intervalo: ");
-        scanf("%f",&x2);
-        printf("Determine o criterio para convergencia: ");
-        scanf("%f",&xacc);
- 
-         x = metodoCordas(x1,x2,xacc);
-         printf("\nO valor de x e: %f\n",x);
-         
-
-}
+#endif
