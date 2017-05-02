@@ -10,7 +10,7 @@ float metodoCordas(float a, float b, float tolerancia){
   int j;
   float xFixo, xProximo, xAtual, imagemFixa, imagemAtual;
 
-    if(f(a) > 0){   //Se imagem do a ponto positiva
+    if(f(a) > 0){   //Se imagem do ponto a positiva
       xFixo = a;
       xAtual = b;
       imagemFixa = f(a);

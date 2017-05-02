@@ -18,7 +18,7 @@ float metodoBiseccao(float a, float b, float tolerancia, char opTolerancia){
 
     func = f(a);
     
-    rtb = func < 0.0 ? (dx=b-a,a) : (dx=a-b,b);    //Desvio condicional que define o ponto de referência para o inicio das iteracoes  
+    rtb = func < 0.0 ? (dx = b - a, a) : (dx = a - b, b);    //Desvio condicional que define o ponto de referência para o inicio das iteracoes  
 
     for (j = 1; j <= JMAX; j++){    //Inicio das iteracoes
       xMedio = rtb + (dx *= 0.5);   //Ponto medio                         
