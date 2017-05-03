@@ -45,7 +45,7 @@ void gauss_Seidel(int m, int n)
     {
         for(j=0; j<=n-1; j++)
         {
-            printf("\na[%d,%d]=  ",i+1,j+1);
+            printf("a[%d,%d]=  ",i+1,j+1);
             scanf("%lf",&matrizPrincipal[i][j]);
         }
     }
@@ -53,14 +53,14 @@ void gauss_Seidel(int m, int n)
     printf("\nDefina o vetor dos termos independentes:\n");
     for(i=0; i<=m-1; i++)
     {
-        printf("\nb[%d]=  ",i+1);
+        printf("b[%d]=  ",i+1);
         scanf("%lf",&termIndependente[i]);
     }
 
     printf("\nDefina o vetor do chute inicial:\n");
     for(i=0; i<=n-1; i++)
     {
-        printf("\nx[%d]=  ",i+1);
+        printf("x[%d]=  ",i+1);
         scanf("%lf",&vetorSolucao[i]);
         vetSolucaoAnt[i] = vetorSolucao[i];
     }
