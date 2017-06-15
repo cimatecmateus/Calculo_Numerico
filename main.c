@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "metodosIntegracao.h"
 #include "metodosRaizes.h"
+#include "metodosLinearesNaoLineares.h"
 
 /* Método que limpa buffer do teclado no linux */
 static void flush_in() { 
@@ -35,7 +36,7 @@ int main(){
             metodosRaizes();
             break;
         case '2':
-            //metodosNaoLineares();
+            metodosLinearesNaoLineares();
             break;
         case '3':
             metodosIntegracao();

@@ -18,7 +18,7 @@ void metodosIntegracao(){
     float limInferior;          //Armazena o limite inferior digitado pelo usuário
     float limSuperior;          //Armazena o limite superior digitada pelo usuário
     unsigned int numPartes;     //Armazena o número de partes especificado pelo usuário
-    extern char yString[];            //Armazena string que descreve a função
+    extern char yString[];      //Armazena string que descreve a função
 
     respUsuario = 's';
 
