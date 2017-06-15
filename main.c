@@ -24,7 +24,8 @@ int main(){
 
     printf("1 - Zeros reais de funções;\n");
     printf("2 - Solução de sistemas lineares e não lineares;\n");
-    printf("3 - Métodos de integração.");
+    printf("3 - Métodos de integração;");
+    printf("4 - Métodos de EDOs.");
 
     printf("\n\nDigite o número correspondente ao método desejado: ");
     scanf("%c", &opMetodo);
@@ -41,6 +42,8 @@ int main(){
         case '3':
             metodosIntegracao();
             break;
+        case '4':
+            metodosEDO();
         default:
             printf("\nOpção inválida!");
     }
