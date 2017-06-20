@@ -2,8 +2,8 @@
 #include "func_integral.h"
 
 float y(float x){
-    func = 1/x;
+    func = expf(-pow(x, 2));
     return func;
 }
 
-char yString[] = "1/x";
+char yString[] = "e^-x²";

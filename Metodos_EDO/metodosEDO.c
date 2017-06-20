@@ -15,7 +15,7 @@ void metodosEDO(){
     char respUsuario;           //Armazena opção de continuação do programa
     float x0, y0, h, xAlvo;
     float resultado;
-    char funcao[] = "x + 2xy";
+    char funcao[] = "4 - 2x";
 
     do{
         system("clear");
